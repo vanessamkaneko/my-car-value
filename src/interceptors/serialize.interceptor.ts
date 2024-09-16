@@ -1,5 +1,5 @@
 import { NestInterceptor, ExecutionContext, CallHandler, UseInterceptors } from "@nestjs/common";
-import { plainToInstance } from "class-transformer";
+import { plainToClass } from "class-transformer";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 
@@ -22,7 +22,7 @@ export class SerializeInterceptor implements NestInterceptor {
     return handler.handle().pipe(
       map((data: any) => { // data é o que será enviado como resposta
         // Para fazer algo com a resposta antes dela ser enviada... Código aqui!
-        return plainToInstance(this.dto, data, {
+        return plainToClass(this.dto, data, {
           excludeExtraneousValues: true // garante que apenas as propriedades marcadas com @expose serão expostas
         })
       })

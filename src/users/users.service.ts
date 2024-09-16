@@ -18,7 +18,7 @@ export class UsersService {
       return null
     }
 
-    return this.repo.findOneBy({ id });
+    return this.repo.findOne({ id });
   }
 
   find(email: string) { // retorna um array com todos os registros que correspondem ao critério de pesquisa; array vazio se não encontrado
